@@ -1,4 +1,6 @@
 # programowanie_rozproszone
 
-Require properties:
+## Require properties:
+```
 mongo_uri
+```
