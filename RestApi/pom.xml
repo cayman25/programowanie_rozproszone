@@ -9,19 +9,25 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>prozproszone</artifactId>
+	<artifactId>prwwsi2020</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>prozproszone</name>
+	<name>prwwsi2020</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>1.15</java.version>
+		<java.version>1.11</java.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>io.projectreactor.rabbitmq</groupId>
@@ -87,6 +93,32 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>5.4.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.microsoft.azure</groupId>-->
+<!--			<artifactId>applicationinsights-logging-log4j2</artifactId>-->
+<!--			<version>[2.0,)</version>-->
+<!--		</dependency>-->
+
+<!--		<dependency>-->
+<!--			<groupId>com.microsoft.azure</groupId>-->
+<!--			<artifactId>applicationinsights-logging-logback</artifactId>-->
+<!--			<version>[2.0,)</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>com.microsoft.azure</groupId>-->
+<!--			<artifactId>applicationinsights-logging-log4j1_2</artifactId>-->
+<!--			<version>[2.0,)</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>com.microsoft.azure</groupId>-->
+<!--			<artifactId>applicationinsights-spring-boot-starter</artifactId>-->
+<!--			<version>2.5.1</version>-->
+<!--		</dependency>-->
+
 	</dependencies>
 
 	<build>
@@ -99,8 +131,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>15</source>
-					<target>15</target>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 		</plugins>

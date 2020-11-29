@@ -1,0 +1,39 @@
+package com.example.prwwsi2020.services;
+
+import com.example.prwwsi2020.models.Patient;
+//import com.example.prozproszone.rabbitmq.RabbitmqConfiguration;
+import com.example.prwwsi2020.rabbitmq.RabbitMqSender;
+import com.example.prwwsi2020.repositories.PatientRepository;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@Service
+public class PatientService {
+
+    private final PatientRepository patientRepository;
+    private final RabbitMqSender sender;
+
+
+    private PatientService(PatientRepository patientRepository, RabbitMqSender sender){ //}, RabbitmqConfiguration rabbitmqConfiguration) {
+        this.patientRepository = patientRepository;
+        this.sender = sender;
+    }
+
+    public Flux<Patient> findAll(){
+        return patientRepository.findAll();
+    }
+
+    public Mono<Patient> findById(String id){
+        return patientRepository.findById(id);
+    }
+
+    public Mono<Patient> addPatient(Patient patient) {
+        return patientRepository.save(patient).doOnNext(message -> addEmailToQueueMono(message.getEmail()));
+    }
+
+    private void addEmailToQueueMono(String email){
+        sender.sendMono("realize_email", email);
+    }
+}
+
